@@ -1,0 +1,56 @@
+{
+  "name": "@zanbug/js",
+  "version": "2.0.0",
+  "description": "Zanbug error & performance monitoring SDK — framework-agnostic JavaScript/TypeScript core for browsers and Node.js.",
+  "keywords": [
+    "zanbug",
+    "error-monitoring",
+    "error-tracking",
+    "monitoring",
+    "web-vitals",
+    "exceptions",
+    "observability"
+  ],
+  "license": "MIT",
+  "homepage": "https://zanbug.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zanbug/js",
+    "directory": "core"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=12"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  },
+  "bugs": {
+    "url": "https://github.com/zanbug/js/issues"
+  },
+  "author": "Zanbug <dev@zanbug.com>"
+}

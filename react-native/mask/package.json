@@ -1,0 +1,9 @@
+{
+  "name": "@zanbug/react-native-mask",
+  "private": true,
+  "description": "Subpath shim so `@zanbug/react-native/mask` resolves with CLASSIC node/Metro resolution too. Metro only honours package.json \"exports\" when unstable_enablePackageExports is on, which is off by default before React Native 0.79 — without this folder the import fails to resolve and the customer's build breaks.",
+  "main": "../dist/mask.cjs",
+  "module": "../dist/mask.js",
+  "types": "../dist/mask.d.ts",
+  "react-native": "../dist/mask.js"
+}

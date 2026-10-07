@@ -1,0 +1,61 @@
+{
+  "name": "@zanbug/react",
+  "version": "2.0.0",
+  "description": "Zanbug SDK for React — error boundary, hooks and automatic error/performance reporting. Works with Vite, CRA and any bundler.",
+  "keywords": [
+    "zanbug",
+    "error-monitoring",
+    "react",
+    "error-tracking",
+    "error-boundary",
+    "monitoring",
+    "web-vitals"
+  ],
+  "license": "MIT",
+  "homepage": "https://zanbug.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zanbug/js",
+    "directory": "react"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@zanbug/js": "^2.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  },
+  "bugs": {
+    "url": "https://github.com/zanbug/js/issues"
+  },
+  "author": "Zanbug <dev@zanbug.com>"
+}

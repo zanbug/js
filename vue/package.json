@@ -1,0 +1,63 @@
+{
+  "name": "@zanbug/vue",
+  "version": "2.0.0",
+  "description": "Zanbug SDK for Vue 3 — plugin that reports component errors, console, network and Web Vitals.",
+  "keywords": [
+    "zanbug",
+    "error-monitoring",
+    "vue",
+    "vue3",
+    "error-tracking",
+    "monitoring",
+    "web-vitals"
+  ],
+  "license": "MIT",
+  "homepage": "https://zanbug.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zanbug/js",
+    "directory": "vue"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=12"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@zanbug/js": "^2.0.0"
+  },
+  "peerDependencies": {
+    "vue": ">=3.0.0 || >=2.7.0"
+  },
+  "devDependencies": {
+    "vue": "^3.5.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  },
+  "bugs": {
+    "url": "https://github.com/zanbug/js/issues"
+  },
+  "author": "Zanbug <dev@zanbug.com>"
+}
