@@ -1,0 +1,25 @@
+{
+  "name": "zanbug-js-monorepo",
+  "private": true,
+  "description": "Zanbug JavaScript/TypeScript SDK family — core + framework adapters. Not published.",
+  "workspaces": [
+    "core",
+    "node",
+    "react",
+    "vue",
+    "next",
+    "express",
+    "nestjs",
+    "react-native"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "tsc --noEmit -p tsconfig.base.json",
+    "clean": "rm -rf */dist"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.1",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  }
+}

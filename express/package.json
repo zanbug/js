@@ -1,0 +1,65 @@
+{
+  "name": "@zanbug/express",
+  "version": "2.0.1",
+  "description": "Zanbug SDK for Express — error middleware and per-request context capture.",
+  "keywords": [
+    "zanbug",
+    "error-monitoring",
+    "express",
+    "error-tracking",
+    "monitoring",
+    "middleware"
+  ],
+  "license": "MIT",
+  "homepage": "https://zanbug.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zanbug/js",
+    "directory": "express"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=12"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@zanbug/js": "^2.0.1",
+    "@zanbug/node": "^2.0.0"
+  },
+  "peerDependencies": {
+    "express": ">=4.0.0"
+  },
+  "devDependencies": {
+    "express": "^4.21.0",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.0.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  },
+  "bugs": {
+    "url": "https://github.com/zanbug/js/issues"
+  },
+  "author": "Zanbug <dev@zanbug.com>"
+}
