@@ -1,6 +1,6 @@
 {
   "name": "@zanbug/js",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Zanbug error & performance monitoring SDK — framework-agnostic JavaScript/TypeScript core for browsers and Node.js.",
   "keywords": [
     "zanbug",

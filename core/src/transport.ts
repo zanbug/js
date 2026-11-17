@@ -1,3 +1,4 @@
+import { CircuitBreaker } from './breaker';
 import { isBrowser, isNode, nodeModule } from './env';
 import { safe } from './utils';
 
@@ -47,15 +48,30 @@ export interface SendOptions {
 }
 
 export class Transport {
+    private breaker: CircuitBreaker;
+
     constructor(
         private host: string,
         private apiKey: string,
         private debug = false,
-    ) {}
+    ) {
+        this.breaker = CircuitBreaker.for(host.replace(/\/+$/, ''));
+    }
+
+    /** Server errors and unreachable hosts count against the breaker; 4xx means the server is alive. */
+    private record(status: number | null): void {
+        if (status === null || status === 0 || status >= 500) this.breaker.failure();
+        else this.breaker.success();
+    }
 
     /** Fire-and-forget POST. Resolves to true when the server accepted it. */
     async send(path: string, body: unknown, opts: SendOptions = {}): Promise<boolean> {
         const url = this.host.replace(/\/+$/, '') + path;
+        // Zanbug is down — skip instantly instead of waiting out a timeout.
+        if (!this.breaker.allow()) {
+            this.log('circuit open, skipping send');
+            return false;
+        }
         let json: string;
         try {
             json = JSON.stringify(body);
@@ -126,9 +142,11 @@ export class Transport {
             } as RequestInit);
 
             if (timer) clearTimeout(timer);
+            this.record(res.status);
             if (!res.ok) this.log('ingest rejected', res.status);
             return res.ok;
         } catch (e) {
+            this.record(null);
             this.log('fetch failed', e);
             return false;
         }
@@ -165,12 +183,17 @@ export class Transport {
                     },
                     (res: any) => {
                         res.resume();
+                        this.record(res.statusCode);
                         resolve(res.statusCode >= 200 && res.statusCode < 300);
                     },
                 );
-                req.on('error', () => resolve(false));
+                req.on('error', () => {
+                    this.record(null);
+                    resolve(false);
+                });
                 req.on('timeout', () => {
                     safe(() => req.destroy());
+                    this.record(null);
                     resolve(false);
                 });
                 req.write(json);
